@@ -1,0 +1,15 @@
+---
+- name: dirty ssh
+  hosts: juniperdevices
+  connection: local
+  tasks:
+    - name: exec dirty
+      dirtyssh:
+        host: "{{ inventory_hostname }}"
+        user: "root"
+        passwd: ""
+        port: 7002
+        commands: "{{ lookup('file','commands-initialconfig.txt') }}"
+        dest: "outputfile.txt"
+        waittime: 4
+
